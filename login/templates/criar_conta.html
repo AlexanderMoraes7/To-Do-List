@@ -1,0 +1,38 @@
+{% block content %}
+<html lang='pt-br'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+    <link rel='stylesheet' href="{% static 'accounts.css' %}">
+    <title> Criação de Conta </title>
+</head>
+<body>
+    <form method='POST' enctype='multipart/form-data'>
+        <div class='form-group'>
+            {{ accounts_form.username.errors}}
+            <label>Usuário</label>
+            {{ accounts_form.username }}
+        </div>
+        <div class='form-group'>
+            {{ accounts_form.email.errors}}
+            <label for="{{ accounts_form.email.id_for_label }}">E-mail</label>
+            {{ accounts_form.email }}
+        </div>
+        <div class='form-group'>
+            {{ accounts_form.password1.errors}}
+            <label for="{{ accounts_form.password1.id_for_label }}">Senha</label>
+            {{ accounts_form.password1 }}
+        </div>
+        <div class='form-group'>
+            {{ accounts_form.password2.errors}}
+            <label for="{{ accounts_form.password2.id_for_label }}">Confirmação de Senha</label>
+            {{ accounts_form.password2 }}
+        </div>
+        <div class='Button'>
+            <a href="{% url 'login' %}"><button type='button'>Voltar</button></a>
+            <button type='submit'>Criar Conta</button>
+        </div>
+    </form>
+</body>
+{% endblock %}
