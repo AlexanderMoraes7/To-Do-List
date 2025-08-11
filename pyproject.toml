@@ -14,6 +14,8 @@ dependencies = [
 [tool.poetry]
 packages = [{include = "todo-list", from = "src"}]
 
+[tool.taskipy.tasks]
+run = 'poetry run python manage.py runserver'
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
