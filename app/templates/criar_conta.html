@@ -1,0 +1,48 @@
+{% block content %}
+{% load i18n static %}
+<html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+        <link rel='stylesheet' href="{% static 'css\criar_conta.css' %}">
+        <title> Criação de Conta </title>
+    </head>
+    <body>
+        <form class='form' method='POST' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class='input_user'>
+                <label>Usuário:</label>
+                {{ criar_conta.username }}
+            </div>
+            <div class='input_user'>
+                <label for="{{ criar_conta.email.id_for_label }}">E-mail:</label>
+                {{ criar_conta.email }}
+            </div>
+            <div class='input_user'>
+                {{ criar_conta.password1.errors}}
+                <label for="{{ criar_conta.password1.id_for_label }}">Senha:</label>
+                {{ criar_conta.password1 }}
+            </div>
+            <div class='input_user'>
+                <label for="{{ criar_conta.password2.id_for_label }}">Confirme sua senha:</label>
+                {{ criar_conta.password2 }}
+            </div>
+            <div class='button'>
+                <a href="{% url 'login' %}"><button type='button'>Voltar</button></a>
+                <button type='submit'>Criar conta</button>
+            </div>
+        </form>
+        {{ criar_conta.username.errors}}
+        {{ criar_conta.email.errors}}
+        {{ criar_conta.tipo.errors}}
+        {{ criar_conta.password2.errors}}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+{% endblock %}

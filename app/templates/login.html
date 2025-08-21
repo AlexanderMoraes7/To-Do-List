@@ -1,0 +1,38 @@
+{% block content %}
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href="{% static 'css/login.css' %}">
+        <title>To Do List Login</title>
+    </head>
+
+    <body>
+        <img src="{% static 'system\todo.jpg' %}" alt='To do list: Saiba elencar prioridades e desenvolver suas tarefas'>
+        <form class='Container' method='post' action="{% url 'login' %}">
+            {% csrf_token %}
+            <h4>Login</h4>
+            <div class='form'>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class='form'>
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+            <button type="submit">Entrar</button>
+            <a href="{% url 'criar_conta' %}">Crie sua conta</a>
+        </form>
+        {% if form.non_field_errors %}
+            <ul>
+                {% for err in form.non_field_errors %}
+                    <li>{{ err }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>
+
+{% endblock  %} 
